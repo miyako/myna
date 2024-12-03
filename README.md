@@ -1,5 +1,7 @@
 # myna
 
+[jpki/myna](https://github.com/jpki/myna) wrapper
+
 ## Go Build
 
 ```
