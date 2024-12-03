@@ -23,4 +23,4 @@ https://github.com/ebfe/scard/blob/master/scard_darwin.go
 xattr -rc
 ```
 
-で検疫フラグをクリアした後，`--entitlements`指定で`codesign`および`xcrun notarytool`
+で検疫フラグをクリアした後`--entitlements`指定で`codesign`および`xcrun notarytool`
