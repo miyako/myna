@@ -1,0 +1,345 @@
+{
+	"$4d": {
+		"version": "1",
+		"kind": "form"
+	},
+	"windowSizingX": "variable",
+	"windowSizingY": "variable",
+	"windowMinWidth": 0,
+	"windowMinHeight": 0,
+	"windowMaxWidth": 32767,
+	"windowMaxHeight": 32767,
+	"rightMargin": 20,
+	"bottomMargin": 20,
+	"events": [
+		"onLoad",
+		"onUnload"
+	],
+	"windowTitle": "",
+	"destination": "detailScreen",
+	"pages": [
+		{
+			"objects": {}
+		},
+		{
+			"objects": {
+				"閉じる": {
+					"type": "button",
+					"text": "閉じる",
+					"top": 450,
+					"left": 532,
+					"width": 104,
+					"height": 22,
+					"events": [
+						"onClick"
+					],
+					"sizingX": "move",
+					"sizingY": "move",
+					"focusable": false
+				},
+				"version": {
+					"type": "button",
+					"text": "version",
+					"top": 20,
+					"left": 20,
+					"width": 124,
+					"height": 22,
+					"events": [
+						"onClick"
+					],
+					"sizingX": "fixed",
+					"sizingY": "fixed",
+					"focusable": false,
+					"method": "ObjectMethods/version.4dm"
+				},
+				"Form.version": {
+					"type": "input",
+					"left": 172,
+					"top": 23,
+					"width": 141,
+					"height": 17,
+					"enterable": false,
+					"dataSource": "Form:C1466.version"
+				},
+				"text_mynumber": {
+					"type": "button",
+					"text": "text_mynumber",
+					"top": 50,
+					"left": 20,
+					"width": 124,
+					"height": 22,
+					"events": [
+						"onClick"
+					],
+					"sizingX": "fixed",
+					"sizingY": "fixed",
+					"focusable": false,
+					"method": "ObjectMethods/text_mynumber.4dm"
+				},
+				"Form.text_mynumber": {
+					"type": "input",
+					"left": 172,
+					"top": 53,
+					"width": 141,
+					"height": 17,
+					"enterable": false,
+					"dataSource": "Form:C1466.text_mynumber"
+				},
+				"visual_photo": {
+					"type": "button",
+					"text": "visual_photo",
+					"top": 80,
+					"left": 20,
+					"width": 124,
+					"height": 22,
+					"events": [
+						"onClick"
+					],
+					"sizingX": "fixed",
+					"sizingY": "fixed",
+					"focusable": false,
+					"method": "ObjectMethods/visual_photo.4dm"
+				},
+				"Form.visual_photo": {
+					"type": "input",
+					"left": 172,
+					"top": 83,
+					"width": 141,
+					"height": 161,
+					"enterable": false,
+					"dataSource": "Form:C1466.visual_photo",
+					"dataSourceTypeHint": "picture",
+					"pictureFormat": "proportionalCenter"
+				},
+				"pin_status": {
+					"type": "button",
+					"text": "pin_status",
+					"top": 260,
+					"left": 20,
+					"width": 124,
+					"height": 22,
+					"events": [
+						"onClick"
+					],
+					"sizingX": "fixed",
+					"sizingY": "fixed",
+					"focusable": false,
+					"method": "ObjectMethods/pin_status.4dm"
+				},
+				"Form.pin_status": {
+					"type": "input",
+					"left": 20,
+					"top": 293,
+					"width": 293,
+					"height": 177,
+					"enterable": false,
+					"dataSource": "Form:C1466.pin_status",
+					"dataSourceTypeHint": "object",
+					"sizingX": "grow",
+					"scrollbarHorizontal": "hidden",
+					"fontTheme": "normal",
+					"fill": "transparent",
+					"borderStyle": "none"
+				},
+				"text_attr": {
+					"type": "button",
+					"text": "text_attr",
+					"top": 140,
+					"left": 360,
+					"width": 124,
+					"height": 22,
+					"events": [
+						"onClick"
+					],
+					"sizingX": "fixed",
+					"sizingY": "fixed",
+					"focusable": false,
+					"method": "ObjectMethods/text_attr.4dm"
+				},
+				"Form.text_attr": {
+					"type": "input",
+					"left": 492,
+					"top": 143,
+					"width": 144,
+					"height": 49,
+					"enterable": false,
+					"dataSource": "Form:C1466.text_attr",
+					"dataSourceTypeHint": "object",
+					"sizingY": "grow",
+					"scrollbarHorizontal": "hidden"
+				},
+				"text_info": {
+					"type": "button",
+					"text": "text_info",
+					"top": 200,
+					"left": 360,
+					"width": 124,
+					"height": 22,
+					"events": [
+						"onClick"
+					],
+					"sizingX": "fixed",
+					"sizingY": "fixed",
+					"focusable": false,
+					"method": "ObjectMethods/text_info.4dm"
+				},
+				"Form.text_info": {
+					"type": "input",
+					"left": 492,
+					"top": 203,
+					"width": 144,
+					"height": 49,
+					"enterable": false,
+					"dataSource": "Form:C1466.text_info",
+					"dataSourceTypeHint": "object",
+					"sizingY": "grow",
+					"scrollbarHorizontal": "hidden"
+				},
+				"test": {
+					"type": "button",
+					"text": "test",
+					"top": 260,
+					"left": 360,
+					"width": 124,
+					"height": 22,
+					"events": [
+						"onClick"
+					],
+					"sizingX": "fixed",
+					"sizingY": "fixed",
+					"focusable": false,
+					"method": "ObjectMethods/test.4dm"
+				},
+				"Form.test": {
+					"type": "input",
+					"left": 492,
+					"top": 263,
+					"width": 144,
+					"height": 49,
+					"enterable": false,
+					"dataSource": "Form:C1466.test",
+					"dataSourceTypeHint": "object",
+					"sizingY": "grow",
+					"scrollbarHorizontal": "hidden"
+				},
+				"text_signature": {
+					"type": "button",
+					"text": "text_signature",
+					"top": 320,
+					"left": 360,
+					"width": 124,
+					"height": 22,
+					"events": [
+						"onClick"
+					],
+					"sizingX": "fixed",
+					"sizingY": "fixed",
+					"focusable": false,
+					"method": "ObjectMethods/text_signature.4dm"
+				},
+				"Form.text_signature": {
+					"type": "input",
+					"left": 492,
+					"top": 323,
+					"width": 144,
+					"height": 49,
+					"enterable": false,
+					"dataSource": "Form:C1466.text_signature",
+					"dataSourceTypeHint": "object",
+					"sizingY": "grow",
+					"scrollbarHorizontal": "hidden"
+				},
+				"text_cert": {
+					"type": "button",
+					"text": "text_cert",
+					"top": 380,
+					"left": 360,
+					"width": 124,
+					"height": 22,
+					"events": [
+						"onClick"
+					],
+					"sizingX": "fixed",
+					"sizingY": "fixed",
+					"focusable": false,
+					"method": "ObjectMethods/text_cert.4dm"
+				},
+				"Form.text_cert": {
+					"type": "input",
+					"left": 492,
+					"top": 383,
+					"width": 144,
+					"height": 49,
+					"enterable": false,
+					"dataSource": "Form:C1466.text_cert",
+					"dataSourceTypeHint": "object",
+					"sizingY": "grow",
+					"scrollbarHorizontal": "hidden"
+				},
+				"jpki_cert_auth": {
+					"type": "button",
+					"text": "jpki_cert_auth",
+					"top": 20,
+					"left": 360,
+					"width": 124,
+					"height": 22,
+					"events": [
+						"onClick"
+					],
+					"sizingX": "fixed",
+					"sizingY": "fixed",
+					"focusable": false,
+					"method": "ObjectMethods/jpki_cert_auth.4dm"
+				},
+				"Form.jpki_cert_auth": {
+					"type": "input",
+					"left": 492,
+					"top": 23,
+					"width": 144,
+					"height": 49,
+					"enterable": false,
+					"dataSource": "Form:C1466.jpki_cert_auth",
+					"dataSourceTypeHint": "object",
+					"sizingY": "grow",
+					"scrollbarHorizontal": "hidden"
+				},
+				"jpki_cert_sign": {
+					"type": "button",
+					"text": "jpki_cert_sign",
+					"top": 80,
+					"left": 360,
+					"width": 124,
+					"height": 22,
+					"events": [
+						"onClick"
+					],
+					"sizingX": "fixed",
+					"sizingY": "fixed",
+					"focusable": false,
+					"method": "ObjectMethods/jpki_cert_sign.4dm"
+				},
+				"Form.jpki_cert_sign": {
+					"type": "input",
+					"left": 492,
+					"top": 83,
+					"width": 144,
+					"height": 49,
+					"enterable": false,
+					"dataSource": "Form:C1466.jpki_cert_sign",
+					"dataSourceTypeHint": "object",
+					"sizingY": "grow",
+					"scrollbarHorizontal": "hidden"
+				}
+			}
+		}
+	],
+	"geometryStamp": 496,
+	"method": "method.4dm",
+	"editor": {
+		"activeView": "View 1",
+		"defaultView": "View 1",
+		"views": {
+			"View 1": {}
+		}
+	}
+}

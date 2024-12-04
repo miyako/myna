@@ -19,20 +19,23 @@ Function init() : cs:C1710._myna_Controller
 Function onData($worker : 4D:C1709.SystemWorker; $params : Object)
 	
 	If ($worker.dataType="text")
-		This:C1470._stdOut.combine(Split string:C1554($params.data; This:C1470.instance.EOL))
+		This:C1470._stdOut.combine(Split string:C1554($params.data; This:C1470.instance.EOL; sk ignore empty strings:K86:1))
 	End if 
 	
 Function onDataError($worker : 4D:C1709.SystemWorker; $params : Object)
 	
 	If ($worker.dataType="text")
-		This:C1470._stdErr.combine(Split string:C1554($params.data; This:C1470.instance.EOL))
+		This:C1470._stdErr.combine(Split string:C1554($params.data; This:C1470.instance.EOL; sk ignore empty strings:K86:1))
 		Case of 
+			: ($params.data="Error:@")
+				This:C1470.worker.terminate()
+			: ($params.data="署名用パスワード(6-16桁): ") && (This:C1470.pin6#Null:C1517)
+				This:C1470.worker.postMessage(This:C1470.pin6+"\r")
 			: ($params.data="暗証番号(4桁): ") && (This:C1470.pin4#Null:C1517)
 				This:C1470.worker.postMessage(This:C1470.pin4+"\r")
-				//This.worker.closeInput() doesn't work for this CLI
 			: (Match regex:C1019("[*]+"; $params.data))
 			Else 
-				This:C1470.worker.terminate()
+				
 		End case 
 	End if 
 	
