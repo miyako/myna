@@ -22,6 +22,10 @@
 			"title": ":xliff:CommonMenuFile",
 			"items": [
 				{
+					"title": "TEST",
+					"method": "TEST_form"
+				},
+				{
 					"title": ":xliff:CommonMenuItemQuit",
 					"shortcutAccel": true,
 					"shortcutKey": "Q",
