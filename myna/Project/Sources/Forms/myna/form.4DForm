@@ -3,8 +3,8 @@
 		"version": "1",
 		"kind": "form"
 	},
-	"windowSizingX": "variable",
-	"windowSizingY": "variable",
+	"windowSizingX": "fixed",
+	"windowSizingY": "fixed",
 	"windowMinWidth": 0,
 	"windowMinHeight": 0,
 	"windowMaxWidth": 32767,
@@ -35,7 +35,8 @@
 					],
 					"sizingX": "move",
 					"sizingY": "move",
-					"focusable": false
+					"focusable": false,
+					"action": "cancel"
 				},
 				"version": {
 					"type": "button",
@@ -333,7 +334,7 @@
 			}
 		}
 	],
-	"geometryStamp": 496,
+	"geometryStamp": 498,
 	"method": "method.4dm",
 	"editor": {
 		"activeView": "View 1",

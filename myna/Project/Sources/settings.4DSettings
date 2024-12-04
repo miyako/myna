@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><preferences stamp="4">
+<?xml version="1.0" encoding="UTF-8"?><preferences stamp="5">
 	<com.4d>
-		<general component_classStore_name="myna"/>
+		<general component_classStore_name="myna" startup_environnement="1"/>
 		<compiler>
 			<typage default_for_button="2" default_for_numeric="1"/>
 			<options target="all"/>
