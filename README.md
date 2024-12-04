@@ -5,6 +5,10 @@
 
 # myna
 
+### 謝辞
+
+http://eswg.jnsa.org/matsuri/201711/20171101-P1-hamano.pdf
+
 ## dependencies.json
 
  ```json
