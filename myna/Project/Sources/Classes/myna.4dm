@@ -23,14 +23,8 @@ Function getDigestInfo($data : Variant) : 4D:C1709.Blob
 			$src:=$data.getContent()
 	End case 
 	
-/*
-When any of these four object identifiers appears within an
-AlgorithmIdentifier, the parameters MUST be NULL.  Implementations
-MUST accept the parameters being absent as well as present.
-*/
-	
-	$algorithm:=SHA256 digest:K66:4
-	//$algorithm:=SHA512 digest
+	//$algorithm:=SHA256 digest
+	$algorithm:=SHA512 digest:K66:5
 	
 	$parameters_absent:=False:C215
 	
@@ -49,11 +43,7 @@ MUST accept the parameters being absent as well as present.
 		$n+=1
 	End while 
 	
-	If ($parameters_absent)
-		SET BLOB SIZE:C606($digestInfo; 17+BLOB size:C605($digest))
-	Else 
-		SET BLOB SIZE:C606($digestInfo; 19+BLOB size:C605($digest))
-	End if 
+	SET BLOB SIZE:C606($digestInfo; 19+BLOB size:C605($digest))
 	
 	COPY BLOB:C558($digest; $digestInfo; 0; BLOB size:C605($digestInfo)-BLOB size:C605($digest); BLOB size:C605($digest))
 	
@@ -62,11 +52,7 @@ MUST accept the parameters being absent as well as present.
 	
 	//digestAlgorithm
 	$digestInfo{2}:=0x0030  //SEQUENCE
-	If ($parameters_absent)
-		$digestInfo{3}:=0x000B  //length[11]
-	Else 
-		$digestInfo{3}:=0x000D  //length[13]
-	End if 
+	$digestInfo{3}:=0x000D  //length[13]
 	
 	//algorithm
 	$digestInfo{4}:=0x0006  //OID
@@ -82,7 +68,7 @@ MUST accept the parameters being absent as well as present.
 			$digestInfo{11}:=0x0003
 			$digestInfo{12}:=0x0004
 			$digestInfo{13}:=0x0002
-			$digestInfo{14}:=0x0001  //SHA256(2.16.840.1.101.3.4.2.1)
+			$digestInfo{14}:=0x0001
 			
 		: ($algorithm=SHA512 digest:K66:5)
 			
@@ -94,22 +80,16 @@ MUST accept the parameters being absent as well as present.
 			$digestInfo{11}:=0x000D
 			$digestInfo{12}:=0x0001
 			$digestInfo{13}:=0x0001
-			$digestInfo{14}:=0x000D  //SHA
+			$digestInfo{14}:=0x000D
 			
 	End case 
 	
-	//parameters
-	If ($parameters_absent)
-		//digest
-		$digestInfo{15}:=0x0004  //OCTET STRING
-		$digestInfo{16}:=BLOB size:C605($digest)  //length
-	Else 
-		$digestInfo{15}:=0x0005  //NULL
-		$digestInfo{16}:=0x0000  //length[0]
-		//digest
-		$digestInfo{17}:=0x0004  //OCTET STRING
-		$digestInfo{18}:=BLOB size:C605($digest)  //length
-	End if 
+	//parameters 
+	$digestInfo{15}:=0x0005  //NULL
+	$digestInfo{16}:=0x0000  //length[0]
+	//digest
+	$digestInfo{17}:=0x0004  //OCTET STRING
+	$digestInfo{18}:=BLOB size:C605($digest)  //length
 	
 	return $digestInfo
 	
@@ -382,19 +362,27 @@ Function jpki_cms_sign($data : Variant; $pin6 : Text) : 4D:C1709.Blob
 	
 	var $in; $out : 4D:C1709.File
 	$in:=Folder:C1567(Temporary folder:C486; fk platform path:K87:2).file(Generate UUID:C1066)
-	$in:=Folder:C1567(fk desktop folder:K87:19).file("DigestInfo")
-	
-	$in.setContent($digestInfo)
-	
 	$out:=Folder:C1567(Temporary folder:C486; fk platform path:K87:2).file(Generate UUID:C1066)
+	$path:=$in.path
+	
+	Case of 
+		: (Value type:C1509($data)=Is text:K8:3)
+			CONVERT FROM TEXT:C1011($data; "utf-8-no-bom"; $src)
+			$in.setContent($src)
+		: (Value type:C1509($data)=Is BLOB:K8:12) || ((Value type:C1509($data)=Is object:K8:27) && (OB Instance of:C1731($data; 4D:C1709.Blob)))
+			$in.setContent($data)
+		: (Value type:C1509($data)=Is object:K8:27) && (OB Instance of:C1731($data; 4D:C1709.File)) && ($data.exists)
+			$in:=$data
+	End case 
 	
 	var $sign : Object
 	
-	This:C1470.perform(["jpki"; "cms"; "sign"; "-f"; "pem"; "-m"; "sha256"; "-p"; $pin6; "-i"; $in; "-o"; $out])
+	This:C1470.perform(["jpki"; "cms"; "sign"; "-f"; "der"; "-m"; "sha256"; "-p"; $pin6; "-i"; $in; "-o"; $out])
 	
 	This:C1470.worker.wait()
 	
 	If ($out.exists)
+		//$sign:={pem: $out.getText()}
 		$sign:=$out.getContent()
 		$out.delete()
 	Else 
@@ -408,5 +396,7 @@ Function jpki_cms_sign($data : Variant; $pin6 : Text) : 4D:C1709.Blob
 			End if 
 		End for each 
 	End if 
+	
+	File:C1566($path).delete()
 	
 	return $sign
