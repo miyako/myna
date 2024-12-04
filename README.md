@@ -5,6 +5,10 @@
 
 # myna
 
+### 謝辞
+
+http://eswg.jnsa.org/matsuri/201711/20171101-P1-hamano.pdf
+
 ## dependencies.json
 
  ```json
@@ -40,3 +44,9 @@ xattr -rc
 ```
 
 で検疫フラグをクリアした後，`--entitlements`指定で`codesign`および`xcrun notarytool`
+
+<img src="https://github.com/user-attachments/assets/2903fbd9-63af-4dac-a94b-5529e0fac2cd" width=500 height=auto />
+
+## 資料
+
+https://blog.sa2taka.com/post/digestinfo-journey/#DERで変換したoid
