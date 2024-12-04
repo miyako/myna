@@ -45,6 +45,8 @@ xattr -rc
 
 で検疫フラグをクリアした後，`--entitlements`指定で`codesign`および`xcrun notarytool`
 
+![](https://github.com/user-attachments/assets/2903fbd9-63af-4dac-a94b-5529e0fac2cd)
+
 ## 資料
 
 https://blog.sa2taka.com/post/digestinfo-journey/#DERで変換したoid
