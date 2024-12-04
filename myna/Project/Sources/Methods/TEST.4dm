@@ -19,8 +19,9 @@ $myna:=cs:C1710.myna.new()
 //$sign:=$myna.jpki_cert_sign($pin6)
 
 $sign:=$myna.jpki_cms_sign("abcde"; $pin6)
-BASE64 ENCODE:C895($sign; $data)
-SET TEXT TO PASTEBOARD:C523($data)
+var $hash : Text
+BASE64 ENCODE:C895($sign; $hash)
+SET TEXT TO PASTEBOARD:C523($hash)
 /*
 MIIJSAYJKoZIhvcNAQcCoIIJOTCCCTUCAQExDTALBglghkg
 BZQMEAgEwFAYJKoZIhvcNAQcBoAcEBWFiY2RloIIG4zCCBt
