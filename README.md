@@ -5,9 +5,7 @@
 
 # myna
 
-### 謝辞
-
-http://eswg.jnsa.org/matsuri/201711/20171101-P1-hamano.pdf
+マイナンバーカードの読み取り
 
 ## dependencies.json
 
@@ -22,6 +20,10 @@ http://eswg.jnsa.org/matsuri/201711/20171101-P1-hamano.pdf
 }
 ```
 
+* Windows版は待ち受け処理で固まるので`0.5.0`を使用
+* Windows版は`.jp2`画像がサポートされていないので顔写真取得は不可
+* 署名は`pkcs`エラーが返されるので不可
+ 
 ## Go Build
 
 ```
@@ -47,6 +49,8 @@ xattr -rc
 
 <img src="https://github.com/user-attachments/assets/2903fbd9-63af-4dac-a94b-5529e0fac2cd" width=500 height=auto />
 
-## 資料
+<img src="https://github.com/user-attachments/assets/f6dac935-66c1-4ef5-a0c1-2f436887f5a0" width=500 height=auto />
 
-https://blog.sa2taka.com/post/digestinfo-journey/#DERで変換したoid
+### 謝辞
+
+http://eswg.jnsa.org/matsuri/201711/20171101-P1-hamano.pdf
