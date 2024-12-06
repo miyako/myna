@@ -13,6 +13,11 @@ Function onLoad()
 	
 	Form:C1466.getSecrets()
 	
+	If (Is Windows:C1573)
+		//.jp2 not supported
+		OBJECT SET ENABLED:C1123(*; "visual_photo"; False:C215)
+	End if 
+	
 Function onUnload()
 	
 	Form:C1466.myna.terminate()

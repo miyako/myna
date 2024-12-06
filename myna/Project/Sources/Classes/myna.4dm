@@ -330,7 +330,7 @@ Function visual_photo($pin4 : Text) : Picture
 	
 	This:C1470.controller.pin4:=$pin4
 	
-	$file:=Folder:C1567(Temporary folder:C486; fk platform path:K87:2).file(Generate UUID:C1066+".jpg")
+	$file:=Folder:C1567(Temporary folder:C486; fk platform path:K87:2).file(Generate UUID:C1066+".jp2")
 	
 	This:C1470.perform(["visual"; "photo"; "-o"; $file; "-p"; $pin4])
 	

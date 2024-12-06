@@ -6,8 +6,8 @@ var $myna : cs:C1710.myna
 $myna:=cs:C1710.myna.new()
 
 $version:=$myna.version()
-$mynumber:=$myna.text_mynumber($pin4)
-//$photo:=$myna.visual_photo($pin4)
+//$mynumber:=$myna.text_mynumber($pin4)
+$photo:=$myna.visual_photo($pin4)
 //SET PICTURE TO PASTEBOARD($photo)
 //$attr:=$myna.text_attr($pin4)
 //$status:=$myna.pin_status()
