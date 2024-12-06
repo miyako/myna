@@ -6,6 +6,9 @@ Class constructor($controller : 4D:C1709.Class)
 	
 	Super:C1705("myna"; $controller=Null:C1517 ? cs:C1710._myna_Controller : $controller)
 	
+	This:C1470._EOL:="\n"  //also on windows
+	This:C1470.controller.timeout:=5
+	
 Function terminate()
 	
 	This:C1470.controller.terminate()
@@ -23,6 +26,7 @@ Function getDigestInfo($data : Variant) : 4D:C1709.Blob
 			$src:=$data.getContent()
 	End case 
 	
+	//$algorithm:=SHA1 digest
 	//$algorithm:=SHA256 digest
 	$algorithm:=SHA512 digest:K66:5
 	
@@ -47,18 +51,46 @@ Function getDigestInfo($data : Variant) : 4D:C1709.Blob
 	
 	COPY BLOB:C558($digest; $digestInfo; 0; BLOB size:C605($digestInfo)-BLOB size:C605($digest); BLOB size:C605($digest))
 	
-	$digestInfo{0}:=0x0030  //SEQUENCE
-	$digestInfo{1}:=0x0031  //length[49]
-	
-	//digestAlgorithm
-	$digestInfo{2}:=0x0030  //SEQUENCE
-	$digestInfo{3}:=0x000D  //length[13]
-	
-	//algorithm
-	$digestInfo{4}:=0x0006  //OID
-	$digestInfo{5}:=0x0009  //length[9]
 	Case of 
+		: ($algorithm=SHA1 digest:K66:2)
+			
+			$digestInfo{0}:=0x0030  //SEQUENCE
+			$digestInfo{1}:=0x0021  //length[33]
+			
+			//digestAlgorithm
+			$digestInfo{2}:=0x0030  //SEQUENCE
+			$digestInfo{3}:=0x0009  //length[9]
+			
+			//algorithm
+			$digestInfo{4}:=0x0006  //OID
+			$digestInfo{5}:=0x0005  //length[5]
+			
+			$digestInfo{6}:=0x002B
+			$digestInfo{7}:=0x000E
+			$digestInfo{8}:=0x0003
+			$digestInfo{9}:=0x0002
+			$digestInfo{10}:=0x001A
+			
+			//parameters 
+			$digestInfo{11}:=0x0005  //NULL
+			$digestInfo{12}:=0x0000  //length[0]
+			
+			//digest
+			$digestInfo{13}:=0x0004  //OCTET STRING
+			$digestInfo{14}:=BLOB size:C605($digest)  //length
+			
 		: ($algorithm=SHA256 digest:K66:4)
+			
+			$digestInfo{0}:=0x0030  //SEQUENCE
+			$digestInfo{1}:=0x0031  //length[49]
+			
+			//digestAlgorithm
+			$digestInfo{2}:=0x0030  //SEQUENCE
+			$digestInfo{3}:=0x000D  //length[13]
+			
+			//algorithm
+			$digestInfo{4}:=0x0006  //OID
+			$digestInfo{5}:=0x0009  //length[9]
 			
 			$digestInfo{6}:=0x0060
 			$digestInfo{7}:=0x0086
@@ -70,32 +102,52 @@ Function getDigestInfo($data : Variant) : 4D:C1709.Blob
 			$digestInfo{13}:=0x0002
 			$digestInfo{14}:=0x0001
 			
+			//parameters 
+			$digestInfo{15}:=0x0005  //NULL
+			$digestInfo{16}:=0x0000  //length[0]
+			
+			//digest
+			$digestInfo{17}:=0x0004  //OCTET STRING
+			$digestInfo{18}:=BLOB size:C605($digest)  //length
+			
 		: ($algorithm=SHA512 digest:K66:5)
 			
-			$digestInfo{6}:=0x002A
+			$digestInfo{0}:=0x0030  //SEQUENCE
+			$digestInfo{1}:=0x0051  //length[81]
+			
+			//digestAlgorithm
+			$digestInfo{2}:=0x0030  //SEQUENCE
+			$digestInfo{3}:=0x000D  //length[13]
+			
+			//algorithm
+			$digestInfo{4}:=0x0006  //OID
+			$digestInfo{5}:=0x0009  //length[9]
+			
+			$digestInfo{6}:=0x0060
 			$digestInfo{7}:=0x0086
 			$digestInfo{8}:=0x0048
-			$digestInfo{9}:=0x0086
-			$digestInfo{10}:=0x00F7
-			$digestInfo{11}:=0x000D
-			$digestInfo{12}:=0x0001
-			$digestInfo{13}:=0x0001
-			$digestInfo{14}:=0x000D
+			$digestInfo{9}:=0x0001
+			$digestInfo{10}:=0x0065
+			$digestInfo{11}:=0x0003
+			$digestInfo{12}:=0x0004
+			$digestInfo{13}:=0x0002
+			$digestInfo{14}:=0x0003
+			
+			//parameters 
+			$digestInfo{15}:=0x0005  //NULL
+			$digestInfo{16}:=0x0000  //length[0]
+			
+			//digest
+			$digestInfo{17}:=0x0004  //OCTET STRING
+			$digestInfo{18}:=BLOB size:C605($digest)  //length
 			
 	End case 
-	
-	//parameters 
-	$digestInfo{15}:=0x0005  //NULL
-	$digestInfo{16}:=0x0000  //length[0]
-	//digest
-	$digestInfo{17}:=0x0004  //OCTET STRING
-	$digestInfo{18}:=BLOB size:C605($digest)  //length
 	
 	return $digestInfo
 	
 Function get worker() : 4D:C1709.SystemWorker
 	
-	return This:C1470._controller.worker
+	return This:C1470.controller.worker
 	
 Function get controller()->$controller : cs:C1710._myna_Controller
 	
@@ -382,7 +434,6 @@ Function jpki_cms_sign($data : Variant; $pin6 : Text) : 4D:C1709.Blob
 	This:C1470.worker.wait()
 	
 	If ($out.exists)
-		//$sign:={pem: $out.getText()}
 		$sign:=$out.getContent()
 		$out.delete()
 	Else 

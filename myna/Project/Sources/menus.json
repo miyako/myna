@@ -22,7 +22,7 @@
 			"title": ":xliff:CommonMenuFile",
 			"items": [
 				{
-					"title": "TEST",
+					"title": "TEST…",
 					"method": "TEST_form"
 				},
 				{
